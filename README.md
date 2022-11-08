@@ -4,9 +4,9 @@
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000]([http://localhost:3000](https://cleaning-service-9d61e.web.app/)) to view it in your browser.
 
--
+- https://cleaning-service-9d61e.web.app/
 -
 -
 -
