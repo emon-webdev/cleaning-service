@@ -19,7 +19,7 @@ const Feedback = () => {
             <div className="text-center">
               <div className="avatar">
                 <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src="https://placeimg.com/192/192/people" />
+                  <img src="https://placeimg.com/192/192/people" alt="author" />
                 </div>
               </div>
               <p>Steven Smith</p>

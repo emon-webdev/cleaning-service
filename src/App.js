@@ -25,10 +25,16 @@ function App() {
         {
           path: "/home",
           element: <Home />,
+          loader: async () => {
+            return fetch("http://localhost:5000/services");
+          },
         },
         {
           path: "/services",
           element: <Services />,
+          loader: async () => {
+            return fetch("http://localhost:5000/services");
+          },
         },
         {
           path: "/services/:serviceId",

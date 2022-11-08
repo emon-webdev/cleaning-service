@@ -12,7 +12,7 @@ const Blog = () => {
 
             <p className="mb-5 text-6xl font-bold">Home Service Here.</p>
             <Link to="/">
-              <button class="clean-btn">Appointment</button>
+              <button className="clean-btn">Appointment</button>
             </Link>
           </div>
         </div>
