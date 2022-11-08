@@ -3,33 +3,16 @@
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000]([http://localhost:3000](https://cleaning-service-9d61e.web.app/)) to view it in your browser.
+Live Website : https://cleaning-service-9d61e.web.app/
 
-- https://cleaning-service-9d61e.web.app/
--
--
--
--
--
--
+- React
+- React Router
+- Node, Mongodb , Express
+- React photo View
+- Firebase auth
+- Signgle service added
+- Private route
+- jwt etc
 
 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
