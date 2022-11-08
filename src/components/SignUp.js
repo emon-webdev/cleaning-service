@@ -1,49 +1,105 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile, googleLogin } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("submit click");
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        //update profile
+        const profile = {
+          displayName:name
+        };
+        updateUserProfile(profile)
+        .then(() => {})
+        .then(error=> console.error(error))
+        console.log(user);
+        navigate('/')
+      })
+      .then((error) => {
+        setError(error);
+        console.log(error)
+      });
+  };
+
+
+
+
+
+  //handle google sign in
+  const handleGoogleSignIn = () => {
+    console.log("google sign in");
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate('/')
+      })
+      .catch((err) => {
+        const errorMessage = err.message;
+        setError(errorMessage);
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div className="w-full my-14 mx-auto max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100">
         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
         <form
-          novalidate=""
+          onSubmit={handleSubmit}
+          noValidate=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-400">
+            <label htmlFor="username" className="block dark:text-gray-400">
               Name
             </label>
             <input
               type="text"
               name="name"
+              required
               id="name"
               placeholder="Name"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 text-gray-900 bg-gray-100 focus:dark:border-violet-400"
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-400">
+            <label htmlFor="username" className="block dark:text-gray-400">
               Email
             </label>
             <input
               type="email"
               name="email"
-              id="email" required
+              id="email"
+              required
               placeholder="Email"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 text-gray-900 bg-gray-100 focus:dark:border-violet-400"
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="password" className="block dark:text-gray-400">
+            <label htmlFor="password" className="block dark:text-gray-400">
               Password
             </label>
             <input
               type="password"
-              name="password" required
+              name="password"
+              required
               id="password"
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 text-gray-900 bg-gray-100 focus:dark:border-violet-400"
             />
             <div className="flex  text-xs dark:text-gray-400">
               <button rel="noopener noreferrer" href="#">
@@ -51,7 +107,10 @@ const SignUp = () => {
               </button>
             </div>
           </div>
-          <button className="block w-full p-3 text-center rounded-sm font-semibold text-gray-900 bg-violet-400">
+          <button
+            type="submit"
+            className="block w-full p-3 text-center rounded-sm font-semibold text-gray-900 bg-violet-400"
+          >
             Sign Up
           </button>
         </form>
@@ -63,7 +122,11 @@ const SignUp = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            onClick={handleGoogleSignIn}
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

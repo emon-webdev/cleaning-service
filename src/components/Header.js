@@ -1,8 +1,16 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
-  const user = {};
+  const { logOut, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+console.log(user)
+  const handleLogOut = () => {
+    logOut();
+    navigate('/')
+  };
 
   let activeClass = {
     color: "#1039AD",
@@ -38,45 +46,48 @@ const Header = () => {
           Blog
         </NavLink>
       </li>
-      {user.uid ? (
-        <>
-          <li>
-            <NavLink
-              to="/profile"
-              className="text-[#232F4B] text-[18px] font-medium"
-              style={({ isActive }) => (isActive ? activeClass : undefined)}
-            >
-              Profile
-            </NavLink>
-          </li>
-          <li>
-            <button className="text-[#232F4B] text-[18px] font-medium">
-              Sign Out
-            </button>
-          </li>
-        </>
+      {user?.uid ? (
+      <>
+        <li>
+          <NavLink
+            to="/profile"
+            className="text-[#232F4B] text-[18px] font-medium"
+            style={({ isActive }) => (isActive ? activeClass : undefined)}
+          >
+            Profile
+          </NavLink>
+        </li>
+        <li>
+          <button
+            onClick={handleLogOut}
+            className="text-[#232F4B] text-[18px] font-medium"
+          >
+            Sign Out
+          </button>
+        </li>
+      </>
       ) : (
-        <>
-          <li>
-            <NavLink
-              to="/signin"
-              className="text-[#232F4B] text-[18px] font-medium"
-              style={({ isActive }) => (isActive ? activeClass : undefined)}
-            >
-              Sign In
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/signup"
-              className="text-[#232F4B] text-[18px] font-medium"
-              style={({ isActive }) => (isActive ? activeClass : undefined)}
-            >
-              Sign Up
-            </NavLink>
-          </li>
-        </>
-      )}
+      <>
+        <li>
+          <NavLink
+            to="/signin"
+            className="text-[#232F4B] text-[18px] font-medium"
+            style={({ isActive }) => (isActive ? activeClass : undefined)}
+          >
+            Sign In
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/signup"
+            className="text-[#232F4B] text-[18px] font-medium"
+            style={({ isActive }) => (isActive ? activeClass : undefined)}
+          >
+            Sign Up
+          </NavLink>
+        </li>
+      </>
+       )} 
     </>
   );
 

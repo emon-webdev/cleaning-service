@@ -1,5 +1,5 @@
-a:active,
-button:focus {
+.menu a:active,
+.menu button:focus {
   background: transparent;
 }
 
@@ -14,4 +14,8 @@ button:focus {
   font-size: 18px;
   line-height: 32px;
   color: #ffffff;
+  transition: 0.3s;
+}
+.clean-btn:hover {
+  background: linear-gradient(180deg, #1039ad 100%, #7a97e9 0%);
 }
