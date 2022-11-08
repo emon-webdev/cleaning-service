@@ -5,10 +5,10 @@ import Blog from "./components/Blog";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import ServiceDetails from "./components/ServiceDetails";
 import Services from "./components/Services";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import SingleService from "./components/SingleService";
 import Root from "./Routes/Root";
 
 function App() {
@@ -38,7 +38,10 @@ function App() {
         },
         {
           path: "/services/:serviceId",
-          element: <SingleService />,
+          element: <ServiceDetails />,
+          loader: async ({params}) => {
+            return fetch(`http://localhost:5000/services/${params.serviceId}`);
+          },
         },
         {
           path: "/blog",

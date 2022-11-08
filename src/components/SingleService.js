@@ -12,8 +12,8 @@ const SingleService = ({ services }) => {
         <p>{about.slice(0, 70) + "..."}</p>
         <p className="text-[#1039AD] my-2">Price: ${price}</p>
         <p className="text-[#1039AD] my-2">Rating: {rating}</p>
-        <Link to={`/services/:${_id}`}>
-          <button className="text-[#1039AD] font-medium">Read More...</button>
+        <Link to={`/services/${_id}`}>
+          <button className="text-[#1039AD] font-medium">Details...</button>
         </Link>
       </div>
     </div>

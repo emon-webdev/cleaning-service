@@ -1,10 +1,9 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import SingleService from "./SingleService";
 
 const Services = () => {
   const services = useLoaderData();
-  console.log(services);
   return (
     <div className="md:w-11/12 px-4 my-[100px] md:px-0 mx-auto">
       <div className="max-w-xl mx-auto">
@@ -17,6 +16,13 @@ const Services = () => {
         {services?.map((services) => (
           <SingleService key={services._id} services={services} />
         ))}
+      </div>
+      <div className="text-center mt-14">
+        {services?.length > 3 && (
+          <Link to="/services">
+            <button class="clean-btn">See All</button>
+          </Link>
+        )}
       </div>
     </div>
   );
