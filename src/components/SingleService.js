@@ -16,7 +16,7 @@ const SingleService = ({ services }) => {
           {services?.name}
         </h2>
         <h3>{title}</h3>
-        <p>{about.slice(0, 70) + "..."}</p>
+        <p>{about.slice(0, 100) + "..."}</p>
         <p className="text-[#1039AD] my-2">Price: ${price}</p>
         <p className="text-[#1039AD] my-2">Rating: {rating}</p>
         <Link to={`/services/${_id}`}>

@@ -20,7 +20,7 @@ const Services = () => {
       <div className="text-center mt-14">
         {services?.length > 3 && (
           <Link to="/services">
-            <button class="clean-btn">See All</button>
+            <button className="clean-btn">See All</button>
           </Link>
         )}
       </div>

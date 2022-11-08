@@ -8,7 +8,7 @@ const Header = () => {
 
   const handleLogOut = () => {
     logOut();
-    navigate('/')
+    navigate("/");
   };
 
   let activeClass = {
@@ -42,51 +42,69 @@ const Header = () => {
           className="text-[#232F4B] text-[18px] font-medium"
           style={({ isActive }) => (isActive ? activeClass : undefined)}
         >
-          Blog
+          Blogs
         </NavLink>
       </li>
       {user?.uid ? (
-      <>
-        <li>
-          <NavLink
-            to="/profile"
-            className="text-[#232F4B] text-[18px] font-medium"
-            style={({ isActive }) => (isActive ? activeClass : undefined)}
-          >
-            Profile
-          </NavLink>
-        </li>
-        <li>
-          <button
-            onClick={handleLogOut}
-            className="text-[#232F4B] text-[18px] font-medium"
-          >
-            Sign Out
-          </button>
-        </li>
-      </>
+        <>
+          <li>
+            <NavLink
+              to="/review"
+              className="text-[#232F4B] text-[18px] font-medium"
+              style={({ isActive }) => (isActive ? activeClass : undefined)}
+            >
+              My Reviews
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/addService"
+              className="text-[#232F4B] text-[18px] font-medium"
+              style={({ isActive }) => (isActive ? activeClass : undefined)}
+            >
+              Add Service
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/profile"
+              className="text-[#232F4B] text-[18px] font-medium"
+              style={({ isActive }) => (isActive ? activeClass : undefined)}
+            >
+              Profile
+            </NavLink>
+          </li>
+          <li>
+            <button
+              onClick={handleLogOut}
+              className="text-[#232F4B] text-[18px] font-medium"
+            >
+              Sign Out
+            </button>
+          </li>
+        </>
       ) : (
-      <>
-        <li>
-          <NavLink
-            to="/signin"
-            className="text-[#232F4B] text-[18px] font-medium"
-            style={({ isActive }) => (isActive ? activeClass : undefined)}
-          >
-            Sign In
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/signup"
-            className="text-[#232F4B] text-[18px] font-medium"
-            style={({ isActive }) => (isActive ? activeClass : undefined)}
-          >
-            Sign Up
-          </NavLink>
-        </li>
-      </>
-       )} 
+        <>
+          <li>
+            <NavLink
+              to="/signin"
+              className="text-[#232F4B] text-[18px] font-medium"
+              style={({ isActive }) => (isActive ? activeClass : undefined)}
+            >
+              Sign In
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/signup"
+              className="text-[#232F4B] text-[18px] font-medium"
+              style={({ isActive }) => (isActive ? activeClass : undefined)}
+            >
+              Sign Up
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 

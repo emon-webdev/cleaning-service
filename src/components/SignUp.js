@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, googleLogin } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleLogin } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -12,6 +14,7 @@ const SignUp = () => {
     console.log("submit click");
     const form = event.target;
     const name = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -20,23 +23,21 @@ const SignUp = () => {
         const user = result.user;
         //update profile
         const profile = {
-          displayName:name
+          displayName: name,
+          photoURL: photoURL,
         };
         updateUserProfile(profile)
-        .then(() => {})
-        .then(error=> console.error(error))
+          .then(() => {})
+          .then((error) => console.error(error));
         console.log(user);
-        navigate('/')
+        navigate("/");
+        toast.success('Sign Up Successfully')
       })
       .then((error) => {
         setError(error);
-        console.log(error)
+        console.log(error);
       });
   };
-
-
-
-
 
   //handle google sign in
   const handleGoogleSignIn = () => {
@@ -45,7 +46,8 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate("/");
+        toast.success('Sign In Successfully')
       })
       .catch((err) => {
         const errorMessage = err.message;
@@ -78,6 +80,19 @@ const SignUp = () => {
           </div>
           <div className="space-y-1 text-sm">
             <label htmlFor="username" className="block dark:text-gray-400">
+              Photo URL
+            </label>
+            <input
+              type="text"
+              name="photoURL"
+              required
+              id="photoUrl"
+              placeholder="Photo URL"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 text-gray-900 bg-gray-100 focus:dark:border-violet-400"
+            />
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="email" className="block dark:text-gray-400">
               Email
             </label>
             <input

@@ -1,9 +1,11 @@
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import AddService from "./components/AddService";
 import Blog from "./components/Blog";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
+import MyReview from "./components/MyReview";
 import Profile from "./components/Profile";
 import ServiceDetails from "./components/ServiceDetails";
 import Services from "./components/Services";
@@ -46,6 +48,14 @@ function App() {
         {
           path: "/blog",
           element: <Blog />,
+        },
+        {
+          path: "/review",
+          element: <MyReview />,
+        },
+        {
+          path: "/addService",
+          element: <AddService />,
         },
         {
           path: "/profile",
