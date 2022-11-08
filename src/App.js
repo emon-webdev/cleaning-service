@@ -11,6 +11,7 @@ import ServiceDetails from "./components/ServiceDetails";
 import Services from "./components/Services";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import PrivateRoute from "./Routes/PrivateRoute";
 import Root from "./Routes/Root";
 
 function App() {
@@ -22,10 +23,6 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/home",
           element: <Home />,
           loader: async () => {
             return fetch("http://localhost:5000/services/ShortService");
@@ -51,11 +48,14 @@ function App() {
         },
         {
           path: "/review",
-          element: <MyReview />,
+          element: <PrivateRoute><MyReview /></PrivateRoute>,
         },
         {
           path: "/addService",
-          element: <AddService />,
+          element: <PrivateRoute><AddService /></PrivateRoute>,
+          loader: async () => {
+            return fetch("http://localhost:5000/services");
+          },
         },
         {
           path: "/profile",

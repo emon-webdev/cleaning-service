@@ -20,8 +20,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
+ 
   //google login
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   //create user for firebase
@@ -38,6 +40,7 @@ const AuthProvider = ({ children }) => {
 
   //set profile and name
   const updateUserProfile = (profile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
 

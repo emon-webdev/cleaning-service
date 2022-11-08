@@ -8,7 +8,7 @@ const Services = () => {
     <div className="md:w-11/12 px-4 my-[100px] md:px-0 mx-auto">
       <div className="max-w-xl mx-auto">
         <h2 className="text-[50px] mb-14 leading-[60px] text-center text-[#232F4B] font-bold">
-          <span className="text-[#1039AD]">Different</span> Service{" "}
+          <span className="text-[#1039AD]">My Different</span> Services{" "}
           {services?.length}
         </h2>
       </div>
@@ -17,11 +17,6 @@ const Services = () => {
           <SingleService key={services._id} services={services} />
         ))}
       </div>
-      {/* <div className="text-center mt-14">
-        <Link to="/services">
-          <button className="clean-btn">See All</button>
-        </Link>
-      </div> */}
     </div>
   );
 };

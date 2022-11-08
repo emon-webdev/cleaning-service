@@ -20,15 +20,6 @@ const Header = () => {
     <>
       <li>
         <NavLink
-          to="/home"
-          className="text-[#232F4B] text-[18px] font-medium"
-          style={({ isActive }) => (isActive ? activeClass : undefined)}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/services"
           className="text-[#232F4B] text-[18px] font-medium"
           style={({ isActive }) => (isActive ? activeClass : undefined)}
