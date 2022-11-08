@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import SingleService from "./SingleService";
 
 const Services = () => {
@@ -17,13 +17,11 @@ const Services = () => {
           <SingleService key={services._id} services={services} />
         ))}
       </div>
-      <div className="text-center mt-14">
-        {services?.length > 3 && (
-          <Link to="/services">
-            <button className="clean-btn">See All</button>
-          </Link>
-        )}
-      </div>
+      {/* <div className="text-center mt-14">
+        <Link to="/services">
+          <button className="clean-btn">See All</button>
+        </Link>
+      </div> */}
     </div>
   );
 };

@@ -28,7 +28,7 @@ function App() {
           path: "/home",
           element: <Home />,
           loader: async () => {
-            return fetch("http://localhost:5000/services");
+            return fetch("http://localhost:5000/services/ShortService");
           },
         },
         {

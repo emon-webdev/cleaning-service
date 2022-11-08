@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import CtaArea from "./CtaArea";
 import Feedback from "./Feedback";
@@ -11,6 +11,11 @@ const Home = () => {
     <div>
       <Banner />
       <Services services={services} />
+      <div className="text-center mt-14">
+        <Link to="/services">
+          <button className="clean-btn">See All</button>
+        </Link>
+      </div>
       <CtaArea/>
       <Feedback />
     </div>
