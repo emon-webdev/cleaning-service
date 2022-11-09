@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
+import useTitle from "../hooks/useTitle";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+  useTitle('Profile')
   return (
     <div className="max-w-md my-14 mx-auto p-8 sm:flex sm:space-x-6 bg-gray-900 text-gray-100">
       <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">

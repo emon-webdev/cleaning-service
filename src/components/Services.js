@@ -1,9 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../hooks/useTitle";
 import SingleService from "./SingleService";
 
 const Services = () => {
   const services = useLoaderData();
+  useTitle('Service')
   return (
     <div className="md:w-11/12 px-4 my-[100px] md:px-0 mx-auto">
       <div className="max-w-xl mx-auto">

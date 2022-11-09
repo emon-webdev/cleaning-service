@@ -2,7 +2,9 @@ import React from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { Link } from "react-router-dom";
+import useTitle from "../hooks/useTitle";
 const SingleService = ({ services }) => {
+  useTitle("Single Service")
   const { title, _id, price, about, picture, rating } = services;
   return (
     <div className="single-service">

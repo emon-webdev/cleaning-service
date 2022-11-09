@@ -1,11 +1,46 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { Link, useLoaderData } from "react-router-dom";
-
+import useTitle from "../hooks/useTitle";
 
 const AddService = () => {
   const services = useLoaderData();
+  useTitle("Add Service");
+  const handlePlaceOrder = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const title = form.title.value;
+    const price = form.price.value;
+    const photoUrl = form.photoUrl.value;
+    const message = form.message.value;
+    console.log(title, price, photoUrl, message);
+
+    const service = {
+      name: title,
+      price: price,
+      picture: photoUrl,
+      about: message,
+    };
+
+    fetch("http://localhost:5000/service", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(service),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Add service successfully");
+          form.reset();
+        }
+      })
+      .then((error) => console.error(error));
+  };
+
   return (
     <>
       <div className="bg-[#F3F3F3] rounded-[10px] my-14 p-4 md:p-24">
@@ -15,7 +50,7 @@ const AddService = () => {
           </h2>
         </div>
 
-        <form>
+        <form onSubmit={handlePlaceOrder}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               type="text"
@@ -43,13 +78,6 @@ const AddService = () => {
               placeholder="Service Describe"
             ></textarea>
           </div>
-
-          {/* <input
-              type="submit"
-              class="border border-[#FF3811] bg-[#FF3811] w-full h-[56px] rounded-[5px] text-white font-semibold hover:border-[#FF3811] hover:bg-transparent hover:text-[#FF3811] hover:duration-1650"
-            >
-              Order Confirm
-            </input> */}
           <input
             type="submit"
             value="Add Service"
@@ -66,27 +94,29 @@ const AddService = () => {
         </div>
         <div className="services-items grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services?.map((services) => (
-            <div className="single-service">
-            <PhotoProvider>
-              <PhotoView src={services?.picture}>
-                <img src={services?.picture} alt="" />
-              </PhotoView>
-            </PhotoProvider>
-            <div className="p-5">
-              <h2 className="text-2xl font-semibold text-[#1039AD]">
-                {services?.name}
-              </h2>
-              <h3>{services?.title}</h3>
-              <p>{services?.about?.slice(0, 100) + "..."}</p>
-              <p className="text-[#1039AD] my-2">Price: ${services?.price}</p>
-              <p className="text-[#1039AD] my-2">Rating: {services?.rating}</p>
-              <Link to={`/services/${services?._id}`}>
-                <button className="text-[#1039AD] font-medium">
-                  Details...
-                </button>
-              </Link>
+            <div className="single-service" key={services._id}>
+              <PhotoProvider>
+                <PhotoView src={services?.picture}>
+                  <img src={services?.picture} alt="" />
+                </PhotoView>
+              </PhotoProvider>
+              <div className="p-5">
+                <h2 className="text-2xl font-semibold text-[#1039AD]">
+                  {services?.name}
+                </h2>
+                <h3>{services?.title}</h3>
+                <p>{services?.about?.slice(0, 100) + "..."}</p>
+                <p className="text-[#1039AD] my-2">Price: ${services?.price}</p>
+                <p className="text-[#1039AD] my-2">
+                  Rating: {services?.rating}
+                </p>
+                <Link to={`/services/${services?._id}`}>
+                  <button className="text-[#1039AD] font-medium">
+                    Details...
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
           ))}
         </div>
       </div>

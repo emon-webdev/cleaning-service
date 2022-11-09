@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import useTitle from "../hooks/useTitle";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData();
-
+useTitle('Service Details')
   return (
     <div>
       <div className="max-w-xl my-16 mx-auto p-4 shadow-md dark:bg-gray-900 dark:text-gray-100">
