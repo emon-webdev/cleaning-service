@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
   const { logOut, user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut();
-    navigate("/");
+    // navigate("/");
   };
 
   let activeClass = {
@@ -18,6 +18,15 @@ const Header = () => {
 
   const mainMenu = (
     <>
+      <li>
+        <NavLink
+          to="/"
+          className="text-[#232F4B] text-[18px] font-medium"
+          style={({ isActive }) => (isActive ? activeClass : undefined)}
+        >
+          Home
+        </NavLink>
+      </li>
       <li>
         <NavLink
           to="/services"

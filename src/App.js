@@ -11,6 +11,7 @@ import ServiceDetails from "./components/ServiceDetails";
 import Services from "./components/Services";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import UpdateReview from "./components/UpdateReview";
 import PrivateRoute from "./Routes/PrivateRoute";
 import Root from "./Routes/Root";
 
@@ -38,8 +39,19 @@ function App() {
         {
           path: "/services/:serviceId",
           element: <ServiceDetails />,
-          loader: async ({params}) => {
+          loader: async ({ params }) => {
             return fetch(`http://localhost:5000/services/${params.serviceId}`);
+          },
+        },
+        {
+          path: "/addService",
+          element: (
+            <PrivateRoute>
+              <AddService />
+            </PrivateRoute>
+          ),
+          loader: async () => {
+            return fetch("http://localhost:5000/services");
           },
         },
         {
@@ -48,28 +60,33 @@ function App() {
         },
         {
           path: "/review",
-          element: <PrivateRoute><MyReview /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <MyReview />
+            </PrivateRoute>
+          ),
         },
-        {
-          path: "/addService",
-          element: <PrivateRoute><AddService /></PrivateRoute>,
-          loader: async () => {
-            return fetch("http://localhost:5000/services");
-          },
-        },
+        
         {
           path: "/profile",
           element: <Profile />,
         },
         {
-          path: "/signin",
-          element: <SignIn />,
-        },
-        {
-          path: "/signup",
-          element: <SignUp />,
+          path: "/updateReview/:reviewId",
+          element: <UpdateReview />,
+          loader: async ({ params }) => {
+            return fetch(`http://localhost:5000/reviews/${params.reviewId}`);
+          },
         },
       ],
+    },
+    {
+      path: "/signin",
+      element: <SignIn />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
     },
   ]);
 

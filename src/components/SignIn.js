@@ -3,9 +3,10 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useTitle from "../hooks/useTitle";
+import Header from "./Header";
 
 const SignIn = () => {
-  useTitle('Sign In')
+  useTitle("Sign In");
   const { signIn, googleLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -24,11 +25,31 @@ const SignIn = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+
+        const currentUser = {
+          email: user.email,
+        };
+        console.log(currentUser);
+
+        //get jwt token
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            //not right way
+            localStorage.setItem('cleanToken', data.token)
+          });
+
         form.reset();
         //navigate
         navigate(from, { replace: true });
-        toast.success('Sign In Successfully')
+        toast.success("Sign In Successfully");
       })
       .catch((error) => console.error(error));
   };
@@ -41,7 +62,7 @@ const SignIn = () => {
         const user = result.user;
         console.log(user);
         navigate(from, { replace: true });
-        toast.success('Sign In Successfully')
+        toast.success("Sign In Successfully");
       })
       .catch((err) => {
         const errorMessage = err.message;
@@ -52,6 +73,7 @@ const SignIn = () => {
 
   return (
     <div>
+      <Header />
       <div className="w-full my-14 mx-auto max-w-md p-8 space-y-3 rounded-xl bg-gray-900 text-gray-100">
         <h1 className="text-2xl font-bold text-center">Sign In</h1>
         <form
