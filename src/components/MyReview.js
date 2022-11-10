@@ -11,7 +11,11 @@ const MyReview = () => {
 
   useEffect(() => {
     fetch(
-      `https://cleaning-service-server-theta.vercel.app/userReviews/${user.uid}`
+      `https://cleaning-service-server-theta.vercel.app/userReviews/${user.uid}`, {
+        headers:{
+          authorization:`Bearer ${localStorage.getItem('cleanToken')}`
+        }
+      }
     )
       .then((res) => res.json())
       .then((data) => {

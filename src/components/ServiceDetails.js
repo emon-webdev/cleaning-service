@@ -160,7 +160,7 @@ const ServiceDetails = () => {
             {/* Review item show */}
             <div>
               {reviews?.map((review, index) => (
-                <p key={review._id} className="text-lg">
+                <p key={index} className="text-lg">
                   {index + 1}. {review?.review.reviewMessage}
                 </p>
               ))}
