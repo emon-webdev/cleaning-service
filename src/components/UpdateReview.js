@@ -4,10 +4,6 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdateReview = () => {
   const storedReview = useLoaderData();
-  // const [updateReview, setUpdateReview] = useState({});
-
-  console.log(storedReview._id);
-
   const handleUpdateReview = (event) => {
     event.preventDefault();
     const textReview = event.target.message.value;
