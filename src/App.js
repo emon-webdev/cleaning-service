@@ -26,21 +26,18 @@ function App() {
           path: "/",
           element: <Home />,
           loader: async () => {
-            return fetch("http://localhost:5000/services/ShortService");
+            return fetch("https://cleaning-service-server-theta.vercel.app/services/ShortService");
           },
         },
         {
           path: "/services",
           element: <Services />,
-          loader: async () => {
-            return fetch("http://localhost:5000/services");
-          },
         },
         {
           path: "/services/:serviceId",
           element: <ServiceDetails />,
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/services/${params.serviceId}`);
+            return fetch(`https://cleaning-service-server-theta.vercel.app/services/${params.serviceId}`);
           },
         },
         {
@@ -51,7 +48,7 @@ function App() {
             </PrivateRoute>
           ),
           loader: async () => {
-            return fetch("http://localhost:5000/services");
+            return fetch("https://cleaning-service-server-theta.vercel.app/services");
           },
         },
         {
@@ -72,10 +69,10 @@ function App() {
           element: <Profile />,
         },
         {
-          path: "/updateReview/:reviewId",
+          path: "/update/:reviewId",
           element: <UpdateReview />,
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/reviews/${params.reviewId}`);
+            return fetch(`http://localhost:5000/singleReviews/${params.reviewId}`);
           },
         },
       ],

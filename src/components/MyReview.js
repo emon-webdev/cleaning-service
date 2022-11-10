@@ -8,20 +8,25 @@ const MyReview = () => {
   useTitle("My Review ");
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/userReviews/${user.uid}`)
+    fetch(
+      `https://cleaning-service-server-theta.vercel.app/userReviews/${user.uid}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setMyReviews(data);
       });
   }, [user.uid]);
 
   //delete and remaining review
   const handleDelete = (review) => {
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://cleaning-service-server-theta.vercel.app/reviews/${review._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -52,7 +57,7 @@ const MyReview = () => {
               </div>
               <div>
                 <h4 className="font-bold">{user?.displayName}</h4>
-                <span className="text-xs dark:text-gray-400">{user?.uid}</span>
+                <p className="text-md dark:text-gray-400">{user?.email}</p>
               </div>
             </div>
           </div>
@@ -64,12 +69,13 @@ const MyReview = () => {
             {/* Review item show */}
             <div>
               {myReviews?.map((review, index) => (
-                <div key={review._id} className="my-2">
-                  <p className="text-lg my-2">
-                    {index + 1}. {review?.review}
-                  </p>
-                  <Link to={`/updateReview/${review?._id}`}>
-                    <button className="btn btn-success btn-xs">Update</button>
+                <div key={review?.review} className="my-2">
+                  <h1 className="text-xl font-semibold">
+                    {index + 1}. Service Name: {review?.name}
+                  </h1>
+                  <p className="text-lg my-2">Review: {review?.review}</p>
+                  <Link to={`/update/${review?._id}`}>
+                    <button className="btn btn-success btn-xs">Edit</button>
                   </Link>
                   <button
                     onClick={() => handleDelete(review)}

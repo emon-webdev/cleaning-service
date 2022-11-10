@@ -32,7 +32,7 @@ const SignIn = () => {
         console.log(currentUser);
 
         //get jwt token
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://cleaning-service-server-theta.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

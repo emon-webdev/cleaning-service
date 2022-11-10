@@ -15,7 +15,7 @@ const Banner = () => {
           <p className="mb-5 text-6xl font-bold">
           Easy Cleaning and Home Service Here.
           </p>
-          <button className="clean-btn">Appointment</button>
+          <button className="clean-btn">Get Hair Me</button>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const AddReview = () => {
     const [reviews, setReviews] = useState([]);
     //review all
     useEffect(() => {
-      fetch("http://localhost:5000/reviews")
+      fetch("https://cleaning-service-server-theta.vercel.app/reviews")
         .then((res) => res.json())
         .then((data) => setReviews(data));
     }, []);
