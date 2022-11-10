@@ -31,21 +31,6 @@ const SignIn = () => {
         };
         console.log(currentUser);
 
-        //get jwt token
-        fetch("https://cleaning-service-server-theta.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            //not right way
-            localStorage.setItem('cleanToken', data.token)
-          });
-
         form.reset();
         //navigate
         navigate(from, { replace: true });

@@ -11,17 +11,14 @@ const MyReview = () => {
 
   useEffect(() => {
     fetch(
-      `https://cleaning-service-server-theta.vercel.app/userReviews/${user.uid}`, {
-        headers:{
-          authorization:`Bearer ${localStorage.getItem('cleanToken')}`
-        }
-      }
+      `https://cleaning-service-server-theta.vercel.app/userReviews/${user?.uid}`
     )
       .then((res) => res.json())
       .then((data) => {
         setMyReviews(data);
       });
-  }, [user.uid]);
+  }, [user?.uid]);
+
 
   //delete and remaining review
   const handleDelete = (review) => {
@@ -73,11 +70,11 @@ const MyReview = () => {
             {/* Review item show */}
             <div>
               {myReviews?.map((review, index) => (
-                <div key={review?.review} className="my-2">
+                <div key={review?._id} className="my-2">
                   <h1 className="text-xl font-semibold">
                     {index + 1}. Service Name: {review?.name}
                   </h1>
-                  <p className="text-lg my-2">Review: {review?.review.reviewMessage}</p>
+                  <p className="text-lg my-2">Review: {review?.review?.reviewMessage}</p>
                   <Link to={`/update/${review?._id}`}>
                     <button className="btn btn-success btn-xs">Edit</button>
                   </Link>
