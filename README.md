@@ -13,6 +13,8 @@ Live Website : https://cleaning-service-9d61e.web.app/
 - Signgle service added
 - Private route
 - jwt etc
+- Add services
+- update review
 
 
 
