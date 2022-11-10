@@ -72,7 +72,7 @@ function App() {
           path: "/update/:reviewId",
           element: <UpdateReview />,
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/singleReviews/${params.reviewId}`);
+            return fetch(`https://cleaning-service-server-theta.vercel.app/singleReviews/${params.reviewId}`);
           },
         },
       ],

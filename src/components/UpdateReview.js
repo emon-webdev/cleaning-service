@@ -12,7 +12,7 @@ const UpdateReview = () => {
       reviewMessage: textReview,
     };
 
-    fetch(`http://localhost:5000/reviews/${storedReview._id}`, {
+    fetch(`https://cleaning-service-server-theta.vercel.app/reviews/${storedReview._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
