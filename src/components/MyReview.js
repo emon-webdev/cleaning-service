@@ -73,7 +73,7 @@ const MyReview = () => {
                   <h1 className="text-xl font-semibold">
                     {index + 1}. Service Name: {review?.name}
                   </h1>
-                  <p className="text-lg my-2">Review: {review?.review}</p>
+                  <p className="text-lg my-2">Review: {review?.review.reviewMessage}</p>
                   <Link to={`/update/${review?._id}`}>
                     <button className="btn btn-success btn-xs">Edit</button>
                   </Link>

@@ -41,7 +41,7 @@ const ServiceDetails = () => {
       name: sName,
       serviceId: serviceId,
       //review
-      review: reviewMessage,
+      review: {reviewMessage},
     };
 
     fetch("https://cleaning-service-server-theta.vercel.app/reviews", {
@@ -116,7 +116,7 @@ const ServiceDetails = () => {
                 <div>
                   <h4 className="font-bold">{user?.displayName}</h4>
                   <span className="text-xs dark:text-gray-400">
-                    Id: {user?.uid}
+                    Id: {user?.email}
                   </span>
                 </div>
               </div>
@@ -161,7 +161,7 @@ const ServiceDetails = () => {
             <div>
               {reviews?.map((review, index) => (
                 <p key={review._id} className="text-lg">
-                  {index + 1}. {review?.review}
+                  {index + 1}. {review?.review.reviewMessage}
                 </p>
               ))}
             </div>

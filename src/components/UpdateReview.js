@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateReview = () => {
@@ -11,10 +12,8 @@ const UpdateReview = () => {
     event.preventDefault();
     const textReview = event.target.message.value;
 
-    
-
     const review = {
-      review: textReview,
+      reviewMessage: textReview,
     };
 
     fetch(`http://localhost:5000/reviews/${storedReview._id}`, {
@@ -27,15 +26,14 @@ const UpdateReview = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success("Review update successfully");
       });
-
-    console.log(review);
   };
 
   return (
     <div className="review-area max-w-xl my-16 mx-auto p-2 shadow-md dark:bg-gray-900 dark:text-gray-100">
       <h2 className="text-2xl py-2 font-semibold">
-        Update Review: {storedReview.review}{" "}
+        Update Review: {storedReview?.review.reviewMessage}{" "}
       </h2>
       <div>
         <form onSubmit={handleUpdateReview}>
@@ -44,7 +42,7 @@ const UpdateReview = () => {
               rows="3"
               name="message"
               required
-              defaultValue={storedReview.review}
+              defaultValue={storedReview?.review.reviewMessage}
               className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900 border border-black"
             ></textarea>
             <button
